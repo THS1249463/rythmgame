@@ -6,7 +6,7 @@ public class FollowMouse : MonoBehaviour
     public bool mousefollow = true;
 
     [Header("引用 Spawn 腳本以獲取基準 Z 軸")]
-    public spawn_new spwn;
+    [SerializeField] private Transform targetObject;
 
     void Update()
     {
@@ -18,11 +18,14 @@ public class FollowMouse : MonoBehaviour
 
         // 💡 自動獲取基準點 Z 軸
         float targetZ = 0f;
-        if (spwn != null && spwn.spawnPoints != null && spwn.spawnPoints.Length > 0 && spwn.spawnPoints[0] != null)
+        if (targetObject != null)
         {
-            // 盾牌的 Z 軸直接等於 spawnPoint[0] 的 Z 軸位置
-            targetZ = spwn.spawnPoints[0].position.z;
+            targetZ = targetObject.position.z;
         }
+        else
+        {
+            Debug.LogWarning("FollowMouse 腳本中的 Target Object 尚未指派！");
+        }   
 
         if (mousefollow)
         {

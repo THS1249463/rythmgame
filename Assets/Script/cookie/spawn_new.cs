@@ -50,8 +50,8 @@ public class spawn_new : MonoBehaviour
             // 1. 取得畫面上該軌道基準點的完整座標
             Vector3 basePosition = spawnPoints[pointIndex].position;
 
-            // 2. 計算音符的實際出生位置 (X、Y不變，Z 軸放到 Z + 100 的遠處)
-            Vector3 spawnPos = new Vector3(basePosition.x, basePosition.y, basePosition.z + 150f);
+            // 2. 計算音符的實際出生位置 (X、Y不變，Z 軸放到 Z + 200 的遠處)
+            Vector3 spawnPos = new Vector3(basePosition.x, basePosition.y, basePosition.z + 200f);
 
             GameObject currentNote = notes[noteIndex];
             currentNote.SetActive(true);
