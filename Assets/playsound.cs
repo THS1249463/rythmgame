@@ -12,4 +12,5 @@ public class playsound : MonoBehaviour
     public void critsound() {
         audioSource.PlayOneShot(critical);
     }
+    
 }

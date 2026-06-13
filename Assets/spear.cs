@@ -7,8 +7,10 @@ public class spear : MonoBehaviour
     public Vector3 pos = new Vector3(0, 10, 300);
     public playsound pl;
     public bool hit =false,shoot = false;
-    public target tg;
+    public updatecombo uc;
     public int spx, spy;
+    public spawn spwn;
+
 
     void Start()
     {
@@ -35,9 +37,12 @@ public class spear : MonoBehaviour
                 //tg.sethit();
                 
             }*/
-            if (transform.position.z <= -22f)
+            if (transform.position.z <= -35f)
             {
-                Debug.Log("MISS");
+                spwn.combo = 0;
+                spwn.misscount+=1;
+                Debug.Log("MISS / " + spwn.combo +" Combo");
+                uc.updateText();
                 ResetSpear();
             }
         }
@@ -57,8 +62,12 @@ public class spear : MonoBehaviour
     {
         if (collision.gameObject.tag == "shield" && isFiring)
         {
+            spwn.combo +=1;
+            if(spwn.combo>spwn.maxcombo) spwn.maxcombo = spwn.combo;
+            spwn.critcount +=1;
             pl.critsound();
-            Debug.Log("CRITICAL");
+            Debug.Log("CRITICAL / " + spwn.combo + " Combo");
+            uc.updateText();
             ResetSpear();
         }
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class FollowMouse : MonoBehaviour
 {
     public float distance = 100f;
-    bool mousefollow = false;
+    public bool mousefollow = true;
 
     void Update()
     {
@@ -25,6 +25,9 @@ public class FollowMouse : MonoBehaviour
                 worldPos.y,
                 transform.position.z
             );
+        }
+        else {
+            transform.position = new Vector3(0, -100, -10);
         }
     }
 }
