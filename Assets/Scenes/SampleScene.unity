@@ -230,7 +230,7 @@ Transform:
   m_GameObject: {fileID: 49785637}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.76523, y: -23.71956, z: 0}
+  m_LocalPosition: {x: -0.76523, y: -23.71956, z: 10}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -315,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -422,7 +422,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -551,7 +551,7 @@ Transform:
   m_GameObject: {fileID: 165323720}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.23477, y: -10.71956, z: 0}
+  m_LocalPosition: {x: 12.23477, y: -10.71956, z: 10}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -663,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 177303147}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.76523, y: -10.71956, z: 0}
+  m_LocalPosition: {x: -0.76523, y: -10.71956, z: 10}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -748,7 +748,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -1511,7 +1511,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -1711,7 +1711,7 @@ Transform:
   m_GameObject: {fileID: 602605794}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.76523, y: -10.71956, z: 0}
+  m_LocalPosition: {x: -13.76523, y: -10.71956, z: 10}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2129,7 +2129,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -2714,7 +2714,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -3202,7 +3202,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -4035,10 +4035,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1199004443841004047, guid: db01002d66a847149ba41fd895216385, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db01002d66a847149ba41fd895216385, type: 3}
 --- !u!224 &1729895006 stripped
 RectTransform:
@@ -4124,7 +4121,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -4258,7 +4255,7 @@ Transform:
   m_GameObject: {fileID: 1758279801}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.76523, y: 2.71956, z: 0}
+  m_LocalPosition: {x: -0.76523, y: 2.71956, z: 10}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4649,7 +4646,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -4932,7 +4929,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200
@@ -5183,7 +5180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   myText: {fileID: 2104339941}
-  spwn: {fileID: 1577213868}
+  spwn: {fileID: 1577213870}
 --- !u!1 &2111657209
 GameObject:
   m_ObjectHideFlags: 0
@@ -5343,7 +5340,7 @@ PrefabInstance:
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: spwn
       value: 
-      objectReference: {fileID: 1577213868}
+      objectReference: {fileID: 1577213870}
     - target: {fileID: 6492118427029354992, guid: d5b88091d408de04ca588c53f293208d, type: 3}
       propertyPath: speed
       value: 200

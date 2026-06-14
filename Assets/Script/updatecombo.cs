@@ -4,7 +4,7 @@ using TMPro;
 public class updatecombo : MonoBehaviour
 {
     public TMP_Text myText;
-    public spawn spwn;
+    public spawn_new spwn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

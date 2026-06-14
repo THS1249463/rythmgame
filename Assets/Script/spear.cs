@@ -12,7 +12,7 @@ public class spear : MonoBehaviour
     public playsound pl;
     public bool hit = false, shoot = false;
     public updatecombo uc;
-    public spawn spwn;
+    public spawn_new spwn;
 
     // 💡 核心修改：接收出生點座標與基準點 Z 軸
     public void Fire(Vector3 spawnPosition, float baseZ)

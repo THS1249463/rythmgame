@@ -13,6 +13,7 @@ public class spawn_new : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip susSong;
     public int misscount = 0, critcount = 0, combo = 0, maxcombo = 0;
+    bool playingstatus = false;
 
     void Start() {
         misscount = 0; critcount = 0; combo = 0; maxcombo = 0;
@@ -34,8 +35,9 @@ public class spawn_new : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.F)))
+        if ((Input.GetKeyDown(KeyCode.F)) && !playingstatus)
         {
+            playingstatus = true;
             StartCoroutine(testchart());
             Invoke("SusSongPlay", 0.69f);
 
@@ -70,50 +72,54 @@ public class spawn_new : MonoBehaviour
 
         // 根據你原本程式碼的 (x, y) 座標分配對應的點 (0 ~ 4)
         // 假設對應關係如下（你可以依據自己在 Unity 擺放的順序調整 pointIndex）：
-        // Point 0 = (0, 0)
-        // Point 1 = (-10, 0)
-        // Point 2 = (10, 0)
-        // Point 3 = (10, 2) / (2, 2) / (0, 10) 類型的變化點
-        // Point 4 = (10, -2) / (0, -10) 類型的變化點
+        // Point 0 =左 (0, 0)
+        // Point 1 =上 (-10, 0)
+        // Point 2 =中 (10, 0)
+        // Point 3 =下 (10, 2) / (2, 2) / (0, 10) 類型的變化點
+        // Point 4 =右 (10, -2) / (0, -10) 類型的變化點
 
         ShootNote(0, 2); // 原 shoot1(0,0)
         yield return new WaitForSeconds(0.01f);
-        ShootNote(10, 2); // 原 shoot11(2,2)
+        //ShootNote(10, 2); // 原 shoot11(2,2)
         yield return new WaitForSeconds(0.59f);
 
-        ShootNote(1, 0); // 原 shoot2(-10, 0)
+        ShootNote(1, 2); // 原 shoot2(-10, 0)
         yield return new WaitForSeconds(0.3f);
-        ShootNote(2, 1); // 原 shoot3(0, 0)
+        ShootNote(2, 2); // 原 shoot3(0, 0)
         yield return new WaitForSeconds(0.3f);
-        ShootNote(3, 4); // 原 shoot4(10, 0)
+        ShootNote(3, 2); // 原 shoot4(10, 0)
         yield return new WaitForSeconds(0.3f);
-        ShootNote(4, 3); // 原 shoot5(0, 0)
+        ShootNote(4, 2); // 原 shoot5(0, 0)
         yield return new WaitForSeconds(0.3f);
-        ShootNote(5, 0); // 原 shoot6(-10, 0)
+        ShootNote(5, 2); // 原 shoot6(-10, 0)
         yield return new WaitForSeconds(0.3f);
-        ShootNote(6, 3); // 原 shoot7(0, 0)
+        ShootNote(6, 2); // 原 shoot7(0, 0)
         yield return new WaitForSeconds(0.3f);
-        ShootNote(7, 4); // 原 shoot8(10, 2)
+        ShootNote(7, 2); // 原 shoot8(10, 2)
         yield return new WaitForSeconds(0.05f);
-        ShootNote(8, 2); // 原 shoot9(10, 0)
+        //ShootNote(8, 2); // 原 shoot9(10, 0)
         yield return new WaitForSeconds(0.05f);
-        ShootNote(9, 2); // 原 shoot10(10, -2)
+       // ShootNote(9, 2); // 原 shoot10(10, -2)
 
         yield return new WaitForSeconds(0.9f);
-        ShootNote(10, 0); // 原 shoot11(0, 10)
+        ShootNote(10, 2); // 原 shoot11(0, 10)
         yield return new WaitForSeconds(0.15f);
         ShootNote(0, 2); // 原 shoot1(0, 0)
         yield return new WaitForSeconds(0.15f);
-        ShootNote(1, 4); // 原 shoot2(0, -10)
+        ShootNote(1, 2); // 原 shoot2(0, -10)
         yield return new WaitForSeconds(1f);
 
         yield return new WaitForSeconds(1f);
         Debug.Log("CRIT:" + critcount + "/MISS:" + misscount + "/Combo:" + maxcombo);
+        playingstatus = false;
     }
 
     void ResetStats()
     {
+        
         misscount = 0; critcount = 0; combo = 0; maxcombo = 0;
+        uc.resetText();
+
     }
     public void SusSongPlay()
     {
