@@ -4155,7 +4155,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "press key1~9 to pick a song!\n\n1. Tutorial (no music)  /  level rate:
+  m_text: "press key1~4 to pick a song!\n\n1. Tutorial (no music)  /  level rate:
     * \n\n2. Amongus meme song (very short ver.)  /  level rate: *\n\n3. Spear of
     Justice (Undyne theme)  /  level rate: ***\n\n4. Amongus meme song  /  level
     rate: ****\n\n\n\n\n"
