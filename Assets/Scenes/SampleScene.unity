@@ -3775,7 +3775,7 @@ MonoBehaviour:
   spr10: {fileID: 1785600363}
   uc: {fileID: 2104339944}
   audioSource: {fileID: 1577213869}
-  susSong: {fileID: 8300000, guid: 688a501e695fe094887dfcdeb8e07088, type: 3}
+  susSong: {fileID: 8300000, guid: 33ab23e0cf4e66447b245aeda2e2a3ea, type: 3}
   misscount: 0
   critcount: 0
   combo: 0
@@ -3909,7 +3909,7 @@ MonoBehaviour:
   - {fileID: 165323724}
   uc: {fileID: 2104339944}
   audioSource: {fileID: 1577213869}
-  susSong: {fileID: 8300000, guid: 688a501e695fe094887dfcdeb8e07088, type: 3}
+  susSong: {fileID: 8300000, guid: 33ab23e0cf4e66447b245aeda2e2a3ea, type: 3}
   misscount: 0
   critcount: 0
   combo: 0
@@ -4153,8 +4153,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "press key1~9 to pick a song!\n\n1. Amongus meme song  /  level rate: *
-    \n\n2.\n\n3.\n\n4.\n\n5.\n"
+  m_text: "press key1~9 to pick a song!\n\n1. Tutorial (no music)  /  level rate:
+    * \n\n2. Amongus meme song  /  level rate: ****\n\n3.\n\n4.\n\n5.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}

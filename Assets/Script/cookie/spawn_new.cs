@@ -27,22 +27,19 @@ public class spawn_new : MonoBehaviour
         }
     }
 
-    /*
-0,10
-0,-10
-0,0
-20,0
-10,0
--10,0
--20,0
-*/
-
     void Update()
     {
         if ((Input.GetKeyDown(KeyCode.Alpha1)) && !playingstatus)
         {
             playingstatus = true;
-            StartCoroutine(testchart());
+            StartCoroutine(tutorial());
+
+        }
+
+        if ((Input.GetKeyDown(KeyCode.Alpha2)) && !playingstatus)
+        {
+            playingstatus = true;
+            StartCoroutine(amongus());
             Invoke("SusSongPlay", 0.8f);
 
         }
@@ -70,46 +67,166 @@ public class spawn_new : MonoBehaviour
             }
         }
     }
-    IEnumerator testchart()
+
+    // 根據你原本程式碼的 (x, y) 座標分配對應的點 (0 ~ 4)
+    // 假設對應關係如下（你可以依據自己在 Unity 擺放的順序調整 pointIndex）：
+    // Point 0 =左 (0, 0)
+    // Point 1 =上 (-10, 0)
+    // Point 2 =中 (10, 0)
+    // Point 3 =下 (10, 2) / (2, 2) / (0, 10) 類型的變化點
+    // Point 4 =右 (10, -2) / (0, -10) 類型的變化點
+
+    IEnumerator amongus()
     {
         tt.hide();
         ResetStats();
 
-        // 根據你原本程式碼的 (x, y) 座標分配對應的點 (0 ~ 4)
-        // 假設對應關係如下（你可以依據自己在 Unity 擺放的順序調整 pointIndex）：
-        // Point 0 =左 (0, 0)
-        // Point 1 =上 (-10, 0)
-        // Point 2 =中 (10, 0)
-        // Point 3 =下 (10, 2) / (2, 2) / (0, 10) 類型的變化點
-        // Point 4 =右 (10, -2) / (0, -10) 類型的變化點
-
-        ShootNote(0, 2); // 原 shoot1(0,0)
+        ShootNote(0, 2);
         yield return new WaitForSeconds(0.6f);
 
-        ShootNote(1, 0); // 原 shoot2(-10, 0)
+        ShootNote(1, 0);
         yield return new WaitForSeconds(0.3f);
-        ShootNote(2, 1); // 原 shoot3(0, 0)
+        ShootNote(2, 1);
         yield return new WaitForSeconds(0.3f);
-        ShootNote(3, 4); // 原 shoot4(10, 0)
+        ShootNote(3, 4);
         yield return new WaitForSeconds(0.3f);
-        ShootNote(4, 3); // 原 shoot5(0, 0)
+        ShootNote(4, 3);
         yield return new WaitForSeconds(0.3f);
-        ShootNote(5, 0); // 原 shoot6(-10, 0)
+        ShootNote(5, 0); 
         yield return new WaitForSeconds(0.3f);
-        ShootNote(6, 2); // 原 shoot7(0, 0)
+        ShootNote(6, 2);
         yield return new WaitForSeconds(0.3f);
-        ShootNote(7, 4); // 原 shoot8(10, 2)
-        yield return new WaitForSeconds(0.05f);
-        //ShootNote(8, 2); // 原 shoot9(10, 0)
-        yield return new WaitForSeconds(0.05f);
-       // ShootNote(9, 2); // 原 shoot10(10, -2)
+        ShootNote(7, 4);
+        yield return new WaitForSeconds(0.1f);
 
         yield return new WaitForSeconds(0.8f);
-        ShootNote(10, 1); // 原 shoot11(0, 10)
+        ShootNote(10, 1); 
         yield return new WaitForSeconds(0.15f);
-        ShootNote(0, 2); // 原 shoot1(0, 0)
+        ShootNote(0, 2);
         yield return new WaitForSeconds(0.15f);
-        ShootNote(1, 3); // 原 shoot2(0, -10)
+        ShootNote(1, 3);
+        yield return new WaitForSeconds(1f);
+        //
+        ShootNote(2, 0);
+        yield return new WaitForSeconds(0.4f);
+        ShootNote(3, 4);
+        yield return new WaitForSeconds(0.7f);
+
+        ShootNote(4, 0);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(5, 1);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(6, 4);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(7, 3);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(8, 0);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(9, 1);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(10, 2);
+        yield return new WaitForSeconds(1.2f);
+
+        ShootNote(0, 0);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(1, 2);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(2, 2);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(3, 4);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(4, 2);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(5, 2);
+        yield return new WaitForSeconds(0.3f);
+        //
+        ShootNote(0, 1);
+        yield return new WaitForSeconds(0.7f);
+
+        ShootNote(1, 0);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(2, 4);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(3, 0);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(4, 4);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(5, 1);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(6, 2);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(7, 3);
+        yield return new WaitForSeconds(0.1f);
+
+        yield return new WaitForSeconds(0.8f);
+        ShootNote(10, 0);
+        yield return new WaitForSeconds(0.15f);
+        ShootNote(0, 2);
+        yield return new WaitForSeconds(0.15f);
+        ShootNote(1, 4);
+        yield return new WaitForSeconds(1f);
+        //
+        ShootNote(2, 0);
+        yield return new WaitForSeconds(0.4f);
+        ShootNote(3, 4);
+        yield return new WaitForSeconds(0.7f);
+
+        ShootNote(4, 1);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(5, 3);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(6, 1);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(7, 3);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(8, 0);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(9, 2);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(10, 4);
+        yield return new WaitForSeconds(1.2f);
+
+        ShootNote(0, 1);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(1, 2);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(2, 2);
+        yield return new WaitForSeconds(0.3f);
+        ShootNote(3, 3);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(4, 2);
+        yield return new WaitForSeconds(0.2f);
+        ShootNote(5, 2);
+        yield return new WaitForSeconds(0.3f);
+        //
+        ShootNote(0, 0);
+        yield return new WaitForSeconds(0.7f);
+
+        yield return new WaitForSeconds(1f);
+        Debug.Log("CRIT:" + critcount + "/MISS:" + misscount + "/Combo:" + maxcombo);
+        uc.setEndText();
+        yield return new WaitUntil(
+            () => Input.GetKeyDown(KeyCode.Return)
+        );
+        audioSource.Stop();
+        tt.appear();
+        playingstatus = false;
+    }
+
+    IEnumerator tutorial()
+    {
+        tt.hide();
+        ResetStats();
+
+        ShootNote(0, 2);
+        yield return new WaitForSeconds(1f);
+        ShootNote(1, 0);
+        yield return new WaitForSeconds(1f);
+        ShootNote(2, 1);
+        yield return new WaitForSeconds(1f);
+        ShootNote(3, 4);
+        yield return new WaitForSeconds(1f);
+        ShootNote(4, 3);
         yield return new WaitForSeconds(1f);
 
         yield return new WaitForSeconds(1f);
@@ -118,6 +235,7 @@ public class spawn_new : MonoBehaviour
         yield return new WaitUntil(
             () => Input.GetKeyDown(KeyCode.Return)
         );
+        audioSource.Stop();
         tt.appear();
         playingstatus = false;
     }
