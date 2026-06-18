@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bdc6f57ea630844a0197b01853add3, type: 3}
+  m_Name: Ssu
+  m_EditorClassIdentifier: Assembly-CSharp::SongData
+  songName: SUS
+  songAudio: {fileID: 8300000, guid: 688a501e695fe094887dfcdeb8e07088, type: 3}
+  startDelay: 0.9
+  notesList:
+  - time: 0
+    noteIndex: 0
+    pointIndex: 2
+  - time: 0.6
+    noteIndex: 1
+    pointIndex: 0
+  - time: 0.9
+    noteIndex: 2
+    pointIndex: 1
+  - time: 1.2
+    noteIndex: 3
+    pointIndex: 2
+  - time: 1.5
+    noteIndex: 4
+    pointIndex: 3
+  - time: 1.8
+    noteIndex: 5
+    pointIndex: 2
+  - time: 2.1
+    noteIndex: 6
+    pointIndex: 1
+  - time: 2.4
+    noteIndex: 7
+    pointIndex: 0
+  - time: 2.5
+    noteIndex: 8
+    pointIndex: 4
+  - time: 3.3
+    noteIndex: 9
+    pointIndex: 1
+  - time: 3.45
+    noteIndex: 10
+    pointIndex: 3
+  - time: 3.6
+    noteIndex: 11
+    pointIndex: 2

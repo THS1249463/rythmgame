@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bdc6f57ea630844a0197b01853add3, type: 3}
+  m_Name: First
+  m_EditorClassIdentifier: Assembly-CSharp::SongData
+  songName: noSong
+  songAudio: {fileID: 0}
+  startDelay: 0.9
+  notesList:
+  - time: 0
+    noteIndex: 0
+    pointIndex: 0
+  - time: 1
+    noteIndex: 1
+    pointIndex: 1
+  - time: 2
+    noteIndex: 2
+    pointIndex: 4
+  - time: 3
+    noteIndex: 3
+    pointIndex: 3
+  - time: 4
+    noteIndex: 4
+    pointIndex: 2

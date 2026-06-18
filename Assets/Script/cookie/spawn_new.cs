@@ -1,45 +1,105 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class spawn_new : MonoBehaviour
 {
     [Header("音符物件陣列")]
     public GameObject[] notes;
 
-    [Header("五個對應的座標點 (把畫面的 5 個空物件拉進來)")]
-    public Transform[] spawnPoints; // Size 設定 5
+    [Header("五個對應的座標點")]
+    public Transform[] spawnPoints;
 
+    [Header("譜面資料庫 (把做好的 SongData 拖進來)")]
+    public SongData tutorialSong;
+    public SongData amongUsShortSong;
+    public SongData amongUsLongSong;
+    public SongData undyneSong;
+    public SongData undyneTrueHeroSong;
+
+    [Header("外部組件綁定")]
     public updatecombo uc;
     public AudioSource audioSource;
-    public AudioClip susSong;
-    public int misscount = 0, critcount = 0, combo = 0, maxcombo = 0;
+    public title tt;
 
-    void Start() {
-        misscount = 0; critcount = 0; combo = 0; maxcombo = 0;
+    [HideInInspector] public int misscount = 0, critcount = 0, combo = 0, maxcombo = 0;
+    [HideInInspector] public bool playingstatus = false;
+
+    private SongData currentPlayingSong = null;
+
+    void Start()
+    {
+        ResetStats();
+        tt.appear();
+
         for (int i = 0; i < notes.Length; i++)
         {
             if (notes[i] != null) notes[i].SetActive(false);
         }
     }
 
-    /*
-0,10
-0,-10
-0,0
-20,0
-10,0
--10,0
--20,0
-*/
-
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.F)))
+        if (!playingstatus)
         {
-            StartCoroutine(testchart());
-            Invoke("SusSongPlay", 0.69f);
-
+            if (Input.GetKeyDown(KeyCode.Alpha1)) PlaySong(tutorialSong);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) PlaySong(amongUsShortSong);
+            if (Input.GetKeyDown(KeyCode.Alpha4)) PlaySong(amongUsLongSong);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) PlaySong(undyneSong);
+            if (Input.GetKeyDown(KeyCode.Alpha5)) PlaySong(undyneTrueHeroSong);
         }
+    }
+
+    // 💡 萬用歌曲初始化
+    void PlaySong(SongData song)
+    {
+        if (song == null) return;
+        playingstatus = true;
+        currentPlayingSong = song;
+        StartCoroutine(PlaySongCore());
+    }
+
+    // 💡 核心變革：整款遊戲現在只需要這一個協程就能播完所有歌曲！
+    IEnumerator PlaySongCore()
+    {
+        tt.hide();
+        ResetStats();
+
+        // 動態計算音樂播放的延遲
+        Invoke("PlayCurrentAudio", currentPlayingSong.startDelay);
+
+        float startTime = Time.time;
+        int currentNoteIndex = 0;
+        List<NoteData> songNotes = currentPlayingSong.notesList;
+
+        // 只要這首歌的音符還沒全部射完，就一直用 Update 的速度檢查
+        while (currentNoteIndex < songNotes.Count)
+        {
+            float elapsedTime = Time.time - startTime;
+
+            // 💡 核心判定：當遊戲進行時間大於等於目前音符規定的時間，就發射！
+            if (elapsedTime >= songNotes[currentNoteIndex].time)
+            {
+                ShootNote(songNotes[currentNoteIndex].noteIndex, songNotes[currentNoteIndex].pointIndex);
+                currentNoteIndex++; // 瞄準下一顆音符
+            }
+
+            yield return null; // 每幀檢查一次，精確度高達 90fps~120fps，比 WaitForSeconds 準非常多
+        }
+
+        // 💡 歌曲音符發射完畢後的結算畫面
+        yield return new WaitForSeconds(2f); // 等最後一顆長矛飛完
+        Debug.Log("CRIT:" + critcount + "/MISS:" + misscount + "/Combo:" + maxcombo);
+        uc.setEndText();
+
+        // 等待玩家按下 Enter 鍵回到主畫面
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+
+        audioSource.Stop();
+        tt.appear();
+        playingstatus = false;
+        currentPlayingSong = null;
     }
 
     void ShootNote(int noteIndex, int pointIndex)
@@ -47,11 +107,9 @@ public class spawn_new : MonoBehaviour
         if (noteIndex >= 0 && noteIndex < notes.Length && notes[noteIndex] != null &&
             pointIndex >= 0 && pointIndex < spawnPoints.Length && spawnPoints[pointIndex] != null)
         {
-            // 1. 取得畫面上該軌道基準點的完整座標
-            Vector3 basePosition = spawnPoints[pointIndex].position;
-
-            // 2. 計算音符的實際出生位置 (X、Y不變，Z 軸放到 Z + 200 的遠處)
-            Vector3 spawnPos = new Vector3(basePosition.x, basePosition.y, basePosition.z + 200f);
+            Transform hintPoint = spawnPoints[pointIndex];
+            Vector3 basePosition = hintPoint.position;
+            Vector3 spawnPos = basePosition + hintPoint.forward * 200f; // 200f 遠端生成
 
             GameObject currentNote = notes[noteIndex];
             currentNote.SetActive(true);
@@ -59,74 +117,22 @@ public class spawn_new : MonoBehaviour
             spear spearScript = currentNote.GetComponent<spear>();
             if (spearScript != null)
             {
-                // 💡 關鍵修改：將「出生位置」與「基準點的 Z 軸」一起傳給音符
-                spearScript.Fire(spawnPos, basePosition.z);
+                spearScript.Fire(spawnPos, basePosition, hintPoint.rotation);
             }
         }
     }
-    IEnumerator testchart()
+
+    void PlayCurrentAudio()
     {
-        ResetStats();
-
-        // 根據你原本程式碼的 (x, y) 座標分配對應的點 (0 ~ 4)
-        // 假設對應關係如下（你可以依據自己在 Unity 擺放的順序調整 pointIndex）：
-        // Point 0 = (0, 0)
-        // Point 1 = (-10, 0)
-        // Point 2 = (10, 0)
-        // Point 3 = (10, 2) / (2, 2) / (0, 10) 類型的變化點
-        // Point 4 = (10, -2) / (0, -10) 類型的變化點
-
-        ShootNote(0, 2); // 原 shoot1(0,0)
-        yield return new WaitForSeconds(0.01f);
-        ShootNote(10, 2); // 原 shoot11(2,2)
-        yield return new WaitForSeconds(0.59f);
-
-        ShootNote(1, 0); // 原 shoot2(-10, 0)
-        yield return new WaitForSeconds(0.3f);
-        ShootNote(2, 1); // 原 shoot3(0, 0)
-        yield return new WaitForSeconds(0.3f);
-        ShootNote(3, 4); // 原 shoot4(10, 0)
-        yield return new WaitForSeconds(0.3f);
-        ShootNote(4, 3); // 原 shoot5(0, 0)
-        yield return new WaitForSeconds(0.3f);
-        ShootNote(5, 0); // 原 shoot6(-10, 0)
-        yield return new WaitForSeconds(0.3f);
-        ShootNote(6, 3); // 原 shoot7(0, 0)
-        yield return new WaitForSeconds(0.3f);
-        ShootNote(7, 4); // 原 shoot8(10, 2)
-        yield return new WaitForSeconds(0.05f);
-        ShootNote(8, 2); // 原 shoot9(10, 0)
-        yield return new WaitForSeconds(0.05f);
-        ShootNote(9, 2); // 原 shoot10(10, -2)
-
-        yield return new WaitForSeconds(0.9f);
-        ShootNote(10, 0); // 原 shoot11(0, 10)
-        yield return new WaitForSeconds(0.15f);
-        ShootNote(0, 2); // 原 shoot1(0, 0)
-        yield return new WaitForSeconds(0.15f);
-        ShootNote(1, 4); // 原 shoot2(0, -10)
-        yield return new WaitForSeconds(1f);
-
-        yield return new WaitForSeconds(1f);
-        Debug.Log("CRIT:" + critcount + "/MISS:" + misscount + "/Combo:" + maxcombo);
+        if (currentPlayingSong != null && currentPlayingSong.songAudio != null)
+        {
+            audioSource.PlayOneShot(currentPlayingSong.songAudio);
+        }
     }
 
     void ResetStats()
     {
         misscount = 0; critcount = 0; combo = 0; maxcombo = 0;
-    }
-    public void SusSongPlay()
-    {
-        audioSource.PlayOneShot(susSong);
-    }
-
-    public void SusSongPlay_0()
-    {
-        audioSource.PlayOneShot(susSong);
-    }
-
-    public void SusSongPlay_1()
-    {
-        audioSource.PlayOneShot(susSong);
+        uc.resetText();
     }
 }
